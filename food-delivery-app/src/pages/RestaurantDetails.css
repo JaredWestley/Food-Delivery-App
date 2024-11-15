@@ -1,0 +1,76 @@
+/* src/pages/RestaurantDetails.css */
+.restaurant-details {
+  padding: 24px;
+}
+
+.restaurant-details h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.menu {
+  margin-top: 24px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+.menu-item-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  margin-right: 16px;
+}
+
+.menu-item-info {
+  flex: 1;
+}
+
+.menu-item-info h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.menu-item-info p {
+  margin: 4px 0;
+  color: #666;
+}
+
+.quantity-input {
+  width: 50px;
+  margin-right: 8px;
+}
+
+.menu-item button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.cart {
+  position: fixed;
+  right: 20px;
+  top: 100px;
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.cart h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.cart-item {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}

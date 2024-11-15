@@ -1,27 +1,49 @@
 // src/AuthContext.js
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { auth } from './firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
+import { db } from './firebaseConfig';
+import { doc, getDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+  return useContext(AuthContext);
+}
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false);
+      if (user) {
+        setCurrentUser(user);
+
+        // Fetch user role from Firestore
+        const fetchUserRole = async () => {
+          const userRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(userRef);
+          
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            setUserRole(userData.role);
+          } else {
+            console.error('User data not found');
+          }
+        };
+
+        fetchUserRole();
+      } else {
+        setCurrentUser(null);
+        setUserRole(null);
+      }
     });
+
     return unsubscribe;
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ currentUser }}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
-};
+  const value = { currentUser, userRole };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
