@@ -33,8 +33,8 @@ function RestaurantDetails() {
     return <div>Loading...</div>;
   }
 
-  const handleAddToCart = (item, quantity) => {
-    addToCart(item, quantity);
+  const handleAddToCart = (item, quantity, restaurantId) => {
+    addToCart(item, quantity, restaurantId);
   };
 
   return (
@@ -59,7 +59,7 @@ function RestaurantDetails() {
                 onChange={(e) => (item.quantity = parseInt(e.target.value))}
                 className="quantity-input"
               />
-              <button onClick={() => handleAddToCart(item, item.quantity || 1)}>
+              <button onClick={() => handleAddToCart(item, item.quantity, restaurantId || 1)}>
                 Add to Cart
               </button>
             </div>
