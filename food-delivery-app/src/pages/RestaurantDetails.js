@@ -1,6 +1,5 @@
-// src/pages/RestaurantDetails.js
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { useCart } from '../contexts/CartContext';
@@ -11,6 +10,7 @@ function RestaurantDetails() {
   const { restaurantId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRestaurant = async () => {
@@ -33,8 +33,12 @@ function RestaurantDetails() {
     return <div>Loading...</div>;
   }
 
-  const handleAddToCart = (item, quantity, restaurantId) => {
+  const handleAddToCart = (item, quantity) => {
     addToCart(item, quantity, restaurantId);
+  };
+
+  const handleProceedToCheckout = () => {
+    navigate('/checkout', { state: { restaurantId } }); // Pass restaurantId to the Checkout page
   };
 
   return (
@@ -59,13 +63,14 @@ function RestaurantDetails() {
                 onChange={(e) => (item.quantity = parseInt(e.target.value))}
                 className="quantity-input"
               />
-              <button onClick={() => handleAddToCart(item, item.quantity, restaurantId || 1)}>
+              <button onClick={() => handleAddToCart(item, item.quantity)}>
                 Add to Cart
               </button>
             </div>
           </div>
         ))}
       </div>
+      <button onClick={handleProceedToCheckout}>Go to Checkout</button>
     </div>
   );
 }
