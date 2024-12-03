@@ -25,6 +25,8 @@ function RestaurantOrders() {
             // Query orders where the restaurantID matches
             const q = query(collection(db, 'orders'), where('restaurantID', '==', restaurantID));
             const querySnapshot = await getDocs(q);
+            console.log('h');
+            console.log(querySnapshot);
 
             const ordersList = [];
             querySnapshot.forEach((doc) => {
