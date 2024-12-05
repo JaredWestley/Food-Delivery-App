@@ -3,16 +3,44 @@
     padding: 24px;
   }
   
-  .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-  }
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
   
+.restaurant-tiles-container {
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Up to 4 items per row */
+  gap: 16px; /* Space between items */
+  padding: 16px; /* Add padding around the grid */
+  justify-content: center; /* Center the grid items */
+  align-items: start; /* Align items to the top */
+}
+
+
+/* Styling for individual tiles */
+.restaurant-tile {
+  background-color: #fff; /* Tile background color */
+  border: 1px solid #ccc; /* Light border for separation */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 16px; /* Space inside each tile */
+  text-align: center; /* Center-align text content */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.restaurant-tile:hover {
+  transform: translateY(-5px); /* Lift tile on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Optional: Add responsive styles */
+@media (max-width: 768px) {
   .restaurant-tiles-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Smaller tiles for smaller screens */
   }
+}
+
   

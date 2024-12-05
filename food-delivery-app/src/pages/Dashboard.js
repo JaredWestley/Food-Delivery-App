@@ -1,4 +1,3 @@
-// src/pages/Dashboard.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
@@ -13,6 +12,8 @@ function Dashboard() {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]); // Stores filtered results
+  const [searchQuery, setSearchQuery] = useState(''); // For search input
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true); // To track if we're still fetching data
 
@@ -30,11 +31,12 @@ function Dashboard() {
     const fetchRestaurants = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'restaurants'));
-        const restaurantsData = querySnapshot.docs.map(doc => ({
+        const restaurantsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setRestaurants(restaurantsData);
+        setFilteredRestaurants(restaurantsData); // Initially, display all restaurants
       } catch (error) {
         console.error('Error fetching restaurants: ', error);
       }
@@ -67,6 +69,21 @@ function Dashboard() {
     }
   }, [currentUser]);
 
+  // Filter restaurants based on the search query
+  const handleSearch = (query) => {
+    setSearchQuery(query.toLowerCase());
+    const filtered = restaurants.filter((restaurant) => {
+      // Check if the query matches name, location, or menu items
+      const matchesName = restaurant.name.toLowerCase().includes(query);
+      const matchesLocation = restaurant.location.toLowerCase().includes(query);
+      const matchesMenu = restaurant.menu.some((item) =>
+        item.name.toLowerCase().includes(query)
+      );
+      return matchesName || matchesLocation || matchesMenu;
+    });
+    setFilteredRestaurants(filtered);
+  };
+
   // If we are still loading the role or the userRole is null, show a loading message
   if (loading) {
     return <div>Loading...</div>; // You can replace this with a more sophisticated loading indicator
@@ -96,10 +113,22 @@ function Dashboard() {
         <h2>Welcome, {currentUser?.email}</h2>
         <button onClick={handleLogout}>Logout</button>
       </div>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search restaurants by name, location, or menu items..."
+          value={searchQuery}
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </div>
       <div className="restaurant-tiles-container">
-        {restaurants.map(restaurant => (
-          <RestaurantTile key={restaurant.id} restaurant={restaurant} />
-        ))}
+        {filteredRestaurants.length > 0 ? (
+          filteredRestaurants.map((restaurant) => (
+            <RestaurantTile key={restaurant.id} restaurant={restaurant} />
+          ))
+        ) : (
+          <p>No restaurants match your search criteria.</p>
+        )}
       </div>
     </div>
   );
