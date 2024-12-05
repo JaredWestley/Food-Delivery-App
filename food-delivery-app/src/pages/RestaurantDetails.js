@@ -1,76 +1,118 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { useCart } from '../contexts/CartContext';
 import './RestaurantDetails.css';
-import CartIcon from '../components/CartIcon';
 
 function RestaurantDetails() {
-  const { restaurantId } = useParams();
-  const [restaurant, setRestaurant] = useState(null);
-  const { addToCart } = useCart();
+  const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchField, setSearchField] = useState('name'); // Default search field
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchRestaurant = async () => {
+    const fetchRestaurants = async () => {
       try {
-        const docRef = doc(db, 'restaurants', restaurantId);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setRestaurant(docSnap.data());
-        } else {
-          console.log("No such document!");
-        }
+        const restaurantsCollection = collection(db, 'restaurants');
+        const querySnapshot = await getDocs(restaurantsCollection);
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setRestaurants(data);
+        setFilteredRestaurants(data);
+        console.log(data); // Check if the data is fetched correctly
       } catch (error) {
-        console.error("Error fetching restaurant:", error);
+        console.error('Error fetching restaurants:', error);
       }
     };
-    fetchRestaurant();
-  }, [restaurantId]);
 
-  if (!restaurant) {
-    return <div>Loading...</div>;
-  }
+    fetchRestaurants();
+  }, []);
 
-  const handleAddToCart = (item, quantity) => {
-    addToCart(item, quantity, restaurantId);
+  const handleSearch = () => {
+    const lowerCasedTerm = searchTerm.toLowerCase();
+    const filtered = restaurants.filter((restaurant) => {
+      if (searchField === 'name') {
+        return restaurant.name.toLowerCase().includes(lowerCasedTerm);
+      } else if (searchField === 'location') {
+        return restaurant.location.toLowerCase().includes(lowerCasedTerm);
+      } else if (searchField === 'menu') {
+        return restaurant.menu.some((item) =>
+          item.name.toLowerCase().includes(lowerCasedTerm)
+        );
+      }
+      return false;
+    });
+    setFilteredRestaurants(filtered);
   };
 
-  const handleProceedToCheckout = () => {
-    navigate('/checkout', { state: { restaurantId } }); // Pass restaurantId to the Checkout page
+  const handleNavigate = (restaurantId) => {
+    navigate(`/restaurant/${restaurantId}`);
   };
 
   return (
-    <div className="restaurant-details">
-      <CartIcon />
-      <h2>{restaurant.name}</h2>
-      <p>{restaurant.location}</p>
-      <p>Rating: {restaurant.rating}</p>
-      <div className="menu">
-        <h3>Menu</h3>
-        {restaurant.menu?.map((item, index) => (
-          <div key={index} className="menu-item">
-            <img src={item.image} alt={item.name} className="menu-item-image" />
-            <div className="menu-item-info">
-              <h4>{item.name}</h4>
-              <p>{item.description}</p>
-              <p>${item.price}</p>
-              <input
-                type="number"
-                min="1"
-                defaultValue="1"
-                onChange={(e) => (item.quantity = parseInt(e.target.value))}
-                className="quantity-input"
-              />
-              <button onClick={() => handleAddToCart(item, item.quantity)}>
-                Add to Cart
-              </button>
+    <div className="restaurant-details-page">
+      <div>
+        <h1>Restaurant Search</h1> {/* Add title for clarity */}
+      </div>
+
+      {/* Search Bar */}
+      <div className="search-bar">
+        <select
+          value={searchField}
+          onChange={(e) => setSearchField(e.target.value)}
+          className="search-field-dropdown"
+        >
+          <option value="name">Name</option>
+          <option value="location">Location</option>
+          <option value="menu">Menu Items</option>
+        </select>
+        <input
+          type="text"
+          placeholder={`Search by ${searchField}`}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <button onClick={handleSearch} className="search-button">
+          Search
+        </button>
+      </div>
+
+      {/* Restaurant Tiles */}
+      <div className="restaurant-list">
+        {filteredRestaurants.map((restaurant) => (
+          <div
+            key={restaurant.id}
+            className="restaurant-card"
+            onClick={() => handleNavigate(restaurant.id)}
+          >
+            <img
+              src={
+                restaurant.menu?.[0]?.image ||
+                'https://via.placeholder.com/150' // Default image if no menu images are available
+              }
+              alt={restaurant.name}
+              className="restaurant-image"
+            />
+            <div className="restaurant-info">
+              <h2>{restaurant.name}</h2>
+              <p>Location: {restaurant.location}</p>
+              <p>Rating: {restaurant.rating}</p>
+              <p>
+                Menu Items:{' '}
+                {restaurant.menu
+                  .map((item) => item.name)
+                  .slice(0, 3)
+                  .join(', ')}
+                {restaurant.menu.length > 3 ? '...' : ''}
+              </p>
             </div>
           </div>
         ))}
       </div>
-      <button onClick={handleProceedToCheckout}>Go to Checkout</button>
     </div>
   );
 }
