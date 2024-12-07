@@ -18,6 +18,7 @@ import RestaurantOverview from "./pages/RestaurantOverview";
 import RestaurantOrders from "./pages/RestaurantOrders";
 import AdminManagement from "./pages/AdminManagement";
 import RegisterRest from "./pages/Register_rest";
+import Orders from "./pages/Orders"
 import { AuthProvider } from "./AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 
@@ -32,21 +33,16 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route
-                path="/restaurants/:restaurantId"
-                element={<RestaurantDetails />}
-              />
+              <Route path="/restaurants/:restaurantId" element={<RestaurantDetails />}/>
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/restaurant" element={<RestaurantOverview />} />
-              <Route
-                path="restaurantmanagement"
-                element={<RestaurantManagement />}
-              />
+              <Route path="restaurantmanagement" element={<RestaurantManagement />}/>
               <Route path="restaurantorders" element={<RestaurantOrders />} />
               <Route path="/rider" element={<RiderManagement />} />
               <Route path="/admin" element={<AdminManagement />} />
               <Route path="/orders" element={<RestaurantOrders />} />
               <Route path="/register-rest" element={<RegisterRest />} />
+              <Route path="user-orders" element={<Orders />} />
             </Routes>
           </div>
         </Router>

@@ -10,7 +10,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [attempts, setAttempts] = useState(0); // Track login attempts
+  const [setAttempts] = useState(0); // Track login attempts
   const [isLocked, setIsLocked] = useState(false); // Lock the login button after 3 failed attempts
   const navigate = useNavigate();
   const { currentUser } = useAuth();

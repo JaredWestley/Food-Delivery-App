@@ -48,6 +48,7 @@ function Checkout() {
         status: "pending",
         userId: currentUser?.uid,
         restaurantID: restaurantId,
+        usernotificationviewed: false,
       };
 
       // Save order to Firestore
@@ -90,7 +91,7 @@ function Checkout() {
           }}
           onApprove={async (data, actions) => {
             try {
-              const details = await actions.order.capture(); // Finalize the PayPal payment
+              // const details = await actions.order.capture(); // Finalize the PayPal payment
               setPaymentApproved(true); // Mark payment as approved
               alert("Payment successful! You can now place your order.");
             } catch (error) {

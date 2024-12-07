@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { useCart } from '../contexts/CartContext';
@@ -10,6 +10,8 @@ function RestaurantDetails() {
   const { restaurantId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const { addToCart } = useCart();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRestaurant = async () => {
@@ -36,6 +38,14 @@ function RestaurantDetails() {
     addToCart(item, quantity, restaurantId);
   };
 
+  const GoBack = async () => {
+    try {
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error going back: ', error);
+    }
+  };
+
   // const handleProceedToCheckout = () => {
   //   navigate('/checkout', { state: { restaurantId } }); // Pass restaurantId to the Checkout page
   // };
@@ -44,6 +54,7 @@ function RestaurantDetails() {
     <div className="restaurant-details">
       <CartIcon />
       <h2>{restaurant.name}</h2>
+      <button onClick={GoBack}>Go Back</button>
       <p>{restaurant.location}</p>
       <p>Rating: {restaurant.rating}</p>
       <div className="menu">
