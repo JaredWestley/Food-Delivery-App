@@ -19,7 +19,7 @@ Please go to [Food Delivery App](https://github.com/JaredWestley/Food-Delivery-A
 It is very easy! Simply run npm install and then npx expo start. The app can be viewed as a website, IOS App (Can run IOS Simulator on a Mac) or Android (Can be viewed on Android Simulator)
 
 #### Contributing
-If you have any idea how to make this app better, please [create a pull request](https://github.com/JaredWestley/Food-Delivery-App/compare). If you find any bug, please [create an issue](https://github.com/JaredWestley/HWIDSpoofer/issues/new).
+If you have any idea how to make this app better, please [create a pull request](https://github.com/JaredWestley/Food-Delivery-App/compare). If you find any bug, please [create an issue](https://github.com/JaredWestley/Food-Delivery-App/issues/new/choose).
 
 #### License
-This project is licensed under an GNU GPL license. Please check [LICENSE](LICENSE).
+This project is licensed under an MIT license. Please check [LICENSE](LICENSE).
