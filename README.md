@@ -22,4 +22,4 @@ It is very easy! Simply run npm install and then npx expo start. The app can be 
 If you have any idea how to make this app better, please [create a pull request](https://github.com/JaredWestley/HWIDSpoofer/compare). If you find any bug, please [create an issue](https://github.com/JaredWestley/HWIDSpoofer/issues/new).
 
 #### License
-This project is licensed under an MIT license. Please check [LICENSE](LICENSE).
+This project is licensed under an GNU GPL license. Please check [LICENSE](LICENSE).
