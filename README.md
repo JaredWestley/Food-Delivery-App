@@ -3,6 +3,8 @@
 <p align="center">
 </p>
 
+*This ReadMe is WIP, I will update it with more information at a later point*
+
 ### Screenshots
   <img alt="Home Page" src="assets/HWIDSpoofer_2RGRfPEVCc.png" />
   <img alt="Settings Page" src="assets/HWIDSpoofer_DsgWUq5ujc.png" />
