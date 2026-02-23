@@ -14,7 +14,7 @@
 
 ## 📖 Overview
 
-**Food Delivery App** is a university group project inspired by Deliveroo.  
+This **Food Delivery App** is a university group project inspired by Deliveroo.
 It replicates the core experience of browsing restaurants, viewing menus, and placing food orders within a modern mobile UI.
 
 The application is built using:
