@@ -1,25 +1,98 @@
-<div><h3 align="center">Food Delivery App</h3></div>
-<p align="center">Deliveroo clone coded in React Native</p>
-<p align="center">
-</p>
+<div align="center">
 
-*This ReadMe is WIP, I will update it with more information at a later point*
+# 🍔 Food Delivery App
 
-### Screenshots
-  <img alt="Home Page" src="assets/HWIDSpoofer_2RGRfPEVCc.png" />
-  <img alt="Settings Page" src="assets/HWIDSpoofer_DsgWUq5ujc.png" />
+### Deliveroo Clone built with React Native (Expo)
 
-#### Warning
-This is not an official Food Delivery App. It was created for a University group project. Please don't download it from any third-party sites.
+![Platform](https://img.shields.io/badge/Platform-React%20Native-blue)
+![Expo](https://img.shields.io/badge/Expo-Managed%20Workflow-black)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-#### Download 
-Please go to [Food Delivery App](https://github.com/JaredWestley/Food-Delivery-App/tree/main/food-delivery-app) you can install the project using Node. *Don't forget to star the repo!*
+</div>
 
-#### How to use
-It is very easy! Simply run npm install and then npx expo start. The app can be viewed as a website, IOS App (Can run IOS Simulator on a Mac) or Android (Can be viewed on Android Simulator)
+---
 
-#### Contributing
-If you have any idea how to make this app better, please [create a pull request](https://github.com/JaredWestley/Food-Delivery-App/compare). If you find any bug, please [create an issue](https://github.com/JaredWestley/Food-Delivery-App/issues/new/choose).
+## 📖 Overview
 
-#### License
-This project is licensed under an MIT license. Please check [LICENSE](LICENSE).
+**Food Delivery App** is a university group project inspired by Deliveroo.  
+It replicates the core experience of browsing restaurants, viewing menus, and placing food orders within a modern mobile UI.
+
+The application is built using:
+
+- 📱 React Native  
+- ⚡ Expo  
+- 🌐 Node.js  
+
+> 🚧 This README is a Work in Progress and will be updated with more detailed documentation soon.
+
+---
+
+## ⚠️ Disclaimer
+
+This application:
+- Is a university group project
+- Is not affiliated with Deliveroo or any food delivery service
+- Is not intended for real commercial use
+- Should not be downloaded from third-party websites
+
+---
+
+## 🛠️ Tech Stack
+
+### Front-End
+- React Native
+- Expo
+
+### Back-End
+- Python
+- AI / Trading logic modules
+- Pip-managed dependencies
+
+---
+
+## 🚀 Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/JaredWestley/Food-Delivery-App.git
+cd Food-Delivery-App/food-delivery-app
+```
+
+```bash
+npm install
+```
+
+```bash
+npx expo start
+```
+
+Follow the Expo instructions to run the app on:
+- iOS Simulator
+- Android Emulator
+- Physical Device (via Expo Go)
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions!
+If you would like to improve this project:
+- [Report Bugs](https://github.com/JaredWestley/Food-Delivery-App/issues)
+- [Submit Pull Requests](https://github.com/JaredWestley/Food-Delivery-App/compare)
+
+---
+
+## 📌 Project Status
+
+### 🚧 Work in Progress
+
+This README and the project may continue to evolve with additional documentation and improvements.
+
+### 📜 License
+
+This project is licensed under the MIT License.
+See the LICENSE file for more details.
+
+----
+⭐ If you found this project interesting, consider giving it a star!
