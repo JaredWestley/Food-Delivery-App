@@ -36,6 +36,32 @@ This application:
 - Should not be downloaded from third-party websites
 
 ---
+## 📸 Images
+### Login Page
+<img width="1327" height="962" alt="image" src="https://github.com/user-attachments/assets/b76850a3-d4f3-4882-9c18-f89619d3e5e6" />
+
+### User dashboard
+<img width="1328" height="963" alt="image" src="https://github.com/user-attachments/assets/596a6355-2381-4668-981e-6a10a3042c3c" />
+
+### Restaurant page
+<img width="1326" height="957" alt="image" src="https://github.com/user-attachments/assets/e6a45cfe-d922-4af3-8d37-00b9766c9cf2" />
+
+### View current order
+<img width="1327" height="955" alt="image" src="https://github.com/user-attachments/assets/df1787a6-1e90-46b8-9a78-36645391d7df" />
+
+### Restaurant management dashboard
+<img width="1333" height="965" alt="image" src="https://github.com/user-attachments/assets/0eb7efbc-917a-44f2-92b6-006acc6bf63d" />
+
+### Create new restaurant
+<img width="1329" height="959" alt="image" src="https://github.com/user-attachments/assets/d6c1b55b-5666-4ad6-a279-f326d5ce5346" />
+
+### Add new item for restaurant
+<img width="1331" height="357" alt="image" src="https://github.com/user-attachments/assets/0fec3508-0aaf-4e8c-a427-318a473f319c" />
+
+### Manage orders for restaurant
+<img width="1325" height="958" alt="image" src="https://github.com/user-attachments/assets/e9d27ae1-85d6-483b-81e3-439453ee4915" />
+
+---
 
 ## 🛠️ Tech Stack
 
